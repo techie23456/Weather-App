@@ -6,7 +6,11 @@ export default function Weather() {
   
     const fetchWeather = async () => {
       try {
+
+        
         const response = await fetch(
+
+          
           `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=4d8fb5b93d4af21d66a2948710284366&units=metric`
         );
         const data = await response.json();
@@ -21,12 +25,25 @@ export default function Weather() {
     }, []);
   
     const handleCityChange = (event) => {
+
       setCity(event.target.value);
     };
   
     const handleSubmit = (event) => {
       event.preventDefault();
-      fetchWeather();
+
+     
+      if (city.trim() === "") {
+        console.log("Input is empty");
+        alert("Please Enter City Name")
+       
+      } else {
+        console.log("Input is not empty");
+        fetchWeather();
+      }
+
+        
+      // 
     };
   
     if (!weather) {
